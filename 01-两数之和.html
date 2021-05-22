@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>两数之和</title>
+</head>
+
+<body>
+  <script>
+    //测试数据
+    let arr1 = [2, 7, 11, 15]
+    let arr2 = [3, 2, 4]
+    let arr3 = [3, 3]
+    //1.方法一 暴力遍历法 （可首尾双向遍历）
+    function twoSum1(arr, target) {
+      for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+          if ((arr[i] + arr[j]) == target) {
+            return [i, j]
+          }
+        }
+      }
+      return [0, 0]
+    }
+    //测试1
+    let [i1, j1] = twoSum1(arr1, 9)
+    console.log(i1, j1)
+
+    let [i2, j2] = twoSum1(arr2, 6)
+    console.log(i2, j2)
+
+    let [i3, j3] = twoSum1(arr3, 6)
+    console.log(i3, j3)
+
+    // 2. 方法二
+    function twoSum2(arr, target) {
+      const result = []
+      arr.find((value1, index1, self) => {
+        self.find((value2, index2) => {
+          if(value2 == target - value1 && index1 != index2 ) {
+            result.push(index1,index2)
+            return true
+          }
+          else {
+            return false
+          }
+        })
+      })
+      if (result.length > 0) return result
+      else return null
+    }
+    //测试1
+    let [i11, j11] = twoSum2(arr1, 9)
+    console.log(i11, j11)
+
+    let [i22, j22] = twoSum2(arr2, 6)
+    console.log(i22, j22)
+
+    let [i33, j33] = twoSum2(arr3, 6)
+    console.log(i33, j33)
+  </script>
+</body>
+
+</html>

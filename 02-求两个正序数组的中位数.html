@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>求中位数</title>
+</head>
+
+<body>
+  <script>
+    let num1 = []
+    let num2 = [1]
+    //1.暴力法
+    function findMedian(num1, num2) {
+      let median
+      if (num1.length > 0 || num2.length > 0) {
+        num1.push(...num2)
+        num = num1.sort((a, b) => a - b)
+        let len = num.length
+        if (len % 2 == 0) {
+          return (num[len / 2] + num[len / 2 - 1]) / 2
+        } else {
+          median = num[(len - 1) / 2]
+        }
+        return median
+      }
+      return null
+    }
+    let result = findMedian(num1, num2)
+    console.log(result)
+    num1 = [1]
+    num2 = [ ]
+    // 2.指针法
+    function findMedian2(num1, num2) {
+      let len1 = num1.length
+      let len2 = num2.length
+      let median = Math.ceil((len1 + len2 + 1) / 2)
+      let i = 0
+      let j = 0
+      let result = []
+      if (len1 > 0 && len2 > 0) {
+        while (i + j < median) {
+          if(num1[i] <= num2[j] && i < len1) {
+            result.push(num1[i])
+            i++
+          } else {
+            result.push(num2[j])
+            j++
+          }
+        }
+        if((len1 + len2) % 2 == 0) {
+          return (result.pop() + result.pop()) / 2
+        } else {
+          return result.pop()
+        }
+      } else if(len1>0){
+        return num[0] 
+      } else if(len > 0) {
+        return num2[0]
+      } else {
+        return null
+      }
+    }
+    result = findMedian2(num1,num2)
+    console.log(result)
+
+
+  </script>
+</body>
+
+</html>
